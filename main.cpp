@@ -99,11 +99,12 @@ int main() {
             {
                 if (j.isInSphere(x, y, z)) {
                     n++;
+                    break;//只要在一个球内就跳出循环，如果生成的点同时在两个球内，就会累加两次了
                 }
             }
-            solidNum[i] = n;
-            solidVF[i] = n/double(nMCRT);
         }
+        solidNum[i] = n;
+        solidVF[i] = n/double(nMCRT);
     }
 
     // output solid volume fraction
@@ -117,5 +118,6 @@ int main() {
     for (int i = 0; i < precise; ++i) {
         outfile << setw(10) << (rings[i].r1 + rings[i].r2)/2 << setw(10) << solidVF[i] <<"\r\n";
     }
+    cout << " **** data are saved to VF.txt ****" << endl;
     return 0;
 }
